@@ -1,0 +1,316 @@
+@import "tailwindcss";
+
+:root {
+  --gold: #f5c518;
+  --gold-bright: #ffd700;
+  --navy: #05070d;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  background-color: #000;
+}
+
+body {
+  font-family: "Oswald", "Inter", sans-serif;
+  background-color: #000;
+  color: #e8e8ef;
+  overflow-x: hidden;
+}
+
+.font-cinematic {
+  font-family: "Bebas Neue", "Impact", "Oswald", sans-serif;
+  letter-spacing: 0.06em;
+}
+
+.font-body {
+  font-family: "Inter", "Oswald", sans-serif;
+}
+
+/* ---------- Scrollbar ---------- */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #000;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(#f5c518, #7a6200);
+  border-radius: 4px;
+}
+
+/* ---------- Rain ---------- */
+.rain-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.raindrop {
+  position: absolute;
+  top: -10%;
+  width: 1px;
+  background: linear-gradient(to bottom, rgba(245, 197, 24, 0), rgba(200, 220, 255, 0.45));
+  animation-name: fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-10vh);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh);
+    opacity: 0.2;
+  }
+}
+
+/* ---------- Fog ---------- */
+.fog-layer {
+  position: absolute;
+  inset: -20% -20%;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 20% 80%, rgba(150, 160, 200, 0.08), transparent 60%),
+    radial-gradient(ellipse at 80% 90%, rgba(120, 130, 170, 0.09), transparent 55%);
+  animation: fogdrift 30s ease-in-out infinite alternate;
+}
+
+@keyframes fogdrift {
+  0% {
+    transform: translateX(-3%) translateY(0);
+  }
+  100% {
+    transform: translateX(3%) translateY(-2%);
+  }
+}
+
+/* ---------- Bat signal ---------- */
+.bat-signal-beam {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 60vw;
+  max-width: 900px;
+  aspect-ratio: 1 / 1.4;
+  transform: translateX(-50%);
+  background: conic-gradient(from 180deg at 50% 100%, transparent 25%, rgba(245, 197, 24, 0.18) 50%, transparent 75%);
+  filter: blur(6px);
+  mix-blend-mode: screen;
+  opacity: 0.55;
+  animation: signalflicker 6s ease-in-out infinite;
+}
+
+@keyframes signalflicker {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  45% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 0.15;
+  }
+  55% {
+    opacity: 0.55;
+  }
+}
+
+/* ---------- Glow effects ---------- */
+.glow-text {
+  text-shadow: 0 0 10px rgba(245, 197, 24, 0.55), 0 0 30px rgba(245, 197, 24, 0.35), 0 0 60px rgba(245, 197, 24, 0.2);
+}
+
+.glow-text-soft {
+  text-shadow: 0 0 8px rgba(245, 197, 24, 0.4);
+}
+
+.glow-border {
+  box-shadow: 0 0 12px rgba(245, 197, 24, 0.35), inset 0 0 8px rgba(245, 197, 24, 0.15);
+}
+
+.logo-glow {
+  filter: drop-shadow(0 0 18px rgba(245, 197, 24, 0.65)) drop-shadow(0 0 45px rgba(245, 197, 24, 0.35));
+}
+
+@keyframes pulseGlow {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 14px rgba(245, 197, 24, 0.55)) drop-shadow(0 0 35px rgba(245, 197, 24, 0.28));
+  }
+  50% {
+    filter: drop-shadow(0 0 28px rgba(255, 215, 0, 0.85)) drop-shadow(0 0 70px rgba(255, 215, 0, 0.5));
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 3.2s ease-in-out infinite;
+}
+
+@keyframes slowspin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-slowspin {
+  animation: slowspin 60s linear infinite;
+}
+
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+.animate-floaty {
+  animation: floaty 5s ease-in-out infinite;
+}
+
+/* ---------- Shake ---------- */
+@keyframes shake {
+  10%,
+  90% {
+    transform: translateX(-2px);
+  }
+  20%,
+  80% {
+    transform: translateX(4px);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translateX(-8px);
+  }
+  40%,
+  60% {
+    transform: translateX(8px);
+  }
+}
+
+.animate-shake {
+  animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+/* ---------- Flicker text ---------- */
+@keyframes flickerIn {
+  0%,
+  19%,
+  21%,
+  23%,
+  25%,
+  54%,
+  56%,
+  100% {
+    opacity: 1;
+  }
+  20%,
+  22%,
+  24%,
+  55% {
+    opacity: 0.4;
+  }
+}
+
+.animate-flicker {
+  animation: flickerIn 3.5s linear infinite;
+}
+
+/* ---------- Cursor blink for typewriter ---------- */
+.type-cursor::after {
+  content: "▌";
+  color: var(--gold);
+  animation: blink 0.9s steps(1) infinite;
+  margin-left: 2px;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+/* ---------- Buttons ---------- */
+.btn-bat {
+  position: relative;
+  font-family: "Oswald", sans-serif;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #f5c518;
+  background: linear-gradient(180deg, #0c0d10, #000);
+  border: 1px solid rgba(245, 197, 24, 0.55);
+  transition: all 0.25s ease;
+}
+
+.btn-bat:hover {
+  background: linear-gradient(180deg, #14150f, #000);
+  box-shadow: 0 0 18px rgba(245, 197, 24, 0.55), inset 0 0 12px rgba(245, 197, 24, 0.2);
+  color: #ffe98a;
+}
+
+/* ---------- Lightning flash ---------- */
+@keyframes lightning {
+  0%,
+  92%,
+  100% {
+    opacity: 0;
+  }
+  93% {
+    opacity: 0.85;
+  }
+  94% {
+    opacity: 0.1;
+  }
+  95% {
+    opacity: 0.6;
+  }
+  96% {
+    opacity: 0;
+  }
+}
+
+.lightning-flash {
+  animation: lightning 9s infinite;
+}
+
+/* ---------- Vignette ---------- */
+.vignette::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.75) 100%);
+}
+
+/* ---------- Grain ---------- */
+.grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.parchment-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #f5c518 #000;
+}
